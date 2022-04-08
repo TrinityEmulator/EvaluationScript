@@ -13,8 +13,8 @@ follows.
 
 * `DrawBenchmarkFigure.py`
 
-  This script draws `Figure 4` and `Figure 5`.
+  This script draws `Figure 4` and `Figure 5`. Figures are placed in `Game/fig`.
 
 * `DrawAppFigure.py`
   
-  This script draws `Figure 6`~`Figure 10`.
+  This script draws `Figure 6`~`Figure 10`. Figures are placed in `Benchmark/fig`.

@@ -1,4 +1,5 @@
 # Evaluation Data and Scripts
+![status](https://github.com/TrinityEmulator/EvaluationScript/actions/workflows/python-app.yml/badge.svg)
 
 Here contains the evaluation scripts for generating our major figures in Trinity's paper. 
 

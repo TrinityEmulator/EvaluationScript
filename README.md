@@ -3,12 +3,12 @@
 
 Here contains the evaluation scripts for generating our major figures in Trinity's paper. 
 
-### Requirements
+### 1. Requirements
 To run the scripts, you'll
 need first to install the `Python 3` environment. Also, we have some additional dependencies. To install them,
 type `pip3 install -r requirements.txt` at the root directory of the repo. 
 
-### Script Usages
+### 1. Script Usages
 To run a script named `xxx.py`, simpy type `python3 xxx.py` in your terminal. The scripts functions are detailed as
 follows.
 
@@ -24,7 +24,7 @@ follows.
  
   This script draws `Figure 11`~`Figure 14`. drawn Figures are placed in `DataTransferBench/fig`.
 
-### Data Format
+### 3. Data Format
 
 #### Benchmark
 The raw benchmark data live in `Benchmark/Benchmark.xlsx`. It contains four data sheets, titled `{3DMark, GFXBench}_{External, Internal}`. Here `{3DMark, GFXBench}` refers to the two benchmark apps we test, and `{External, Internal}` refers to the tests on high-end and middle-end PCs, respectively.

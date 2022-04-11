@@ -8,7 +8,7 @@ To run the scripts, you'll
 need first to install the `Python 3` environment. Also, we have some additional dependencies. To install them,
 type `pip3 install -r requirements.txt` at the root directory of the repo. 
 
-### 1. Script Usages
+### 2. Script Usages
 To run a script named `xxx.py`, simpy type `python3 xxx.py` in your terminal. The scripts functions are detailed as
 follows.
 

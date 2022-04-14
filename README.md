@@ -9,7 +9,7 @@ need first to install the `Python 3` environment. Also, we have some additional 
 type `pip3 install -r requirements.txt` at the root directory of the repo. 
 
 ### 2. Script Usages
-To run a script named `xxx.py`, simpy type `python3 xxx.py` in your terminal. The scripts functions are detailed as
+To run a script named `xxx.py`, simpy type `python3 xxx.py` in your terminal. The scripts' functions are detailed as
 follows.
 
 * `DrawBenchmarkFigure.py`

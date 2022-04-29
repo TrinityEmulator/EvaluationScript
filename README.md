@@ -57,7 +57,7 @@ Within each of the folder, there are a number of subfolders, whose name follows 
 
 Below is the list of the top-100 3D apps from Google Play.
 
-| App ID | App Name | Package Name |
+| ID | App Name | Package Name |
 | ---- | ---- | ---- |
 | 1 | Alien Zone Plus | com.alienzoneplus |
 | 2 | Horizon Chase | com.aquiris.horizonchase |

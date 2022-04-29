@@ -53,7 +53,7 @@ This part of data are those of `Figure 11`~`Figure 14` (see Section 4.4 of our p
 Within each of the folder, there are a number of subfolders, whose name follows the convention of `{data_chunk_size in byte}_{number of threads}_0`. Each of the subfolder contains a `throughput.txt` file that hosts the raw throughput data we have measured in evaluation.
 
 
-#### Top-100 3D Apps
+### 4. Top-100 3D Apps
 
 Below is the list of the top-100 3D apps from Google Play.
 

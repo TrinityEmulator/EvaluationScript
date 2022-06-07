@@ -5,8 +5,8 @@ import os
 import csv
 
 BASE_APP_DATA_PATH = os.path.join(os.curdir, "FPS")
-BASE_GAME_DATA_PATH = os.path.join(os.curdir, "Game")
-emulator_names = ["DAOW", "Bluestacks", "GAE", "VMWare", "QEMU-KVM", "Trinity"]
+BASE_GAME_DATA_PATH = os.path.join(os.curdir, "Top5Games")
+EMULATOR_NAMES = ["DAOW", "Bluestacks", "GAE", "VMWare", "QEMU-KVM", "Trinity"]
 TOTAL_WIDTH = 0.5
 SPACE = 1.5
 COLORS = ["#ffffff", "#9e9e9e", "#9e9e9e", "#424242", "#000000"]
@@ -91,21 +91,21 @@ def read_data(emulator_name, app_name, test_type):
 
 def draw_app_figure(app_name, fig_format="pdf"):
     offset = (SPACE - TOTAL_WIDTH) / 2
-    x = [x_ * SPACE + TOTAL_WIDTH * 0.5 + offset for x_ in range(len(emulator_names))]
-    y = [[em] for em in emulator_names]
-    std = [[] for _ in emulator_names]
+    x = [x_ * SPACE + TOTAL_WIDTH * 0.5 + offset for x_ in range(len(EMULATOR_NAMES))]
+    y = [[em] for em in EMULATOR_NAMES]
+    std = [[] for _ in EMULATOR_NAMES]
 
-    for emulator_name in emulator_names:
+    for emulator_name in EMULATOR_NAMES:
         for test_type in ["Internal", "External"]:
             data = read_data(emulator_name, app_name, test_type)
             if len(data) > 0:
-                y[emulator_names.index(emulator_name)].append(np.average(data))
+                y[EMULATOR_NAMES.index(emulator_name)].append(np.average(data))
             else:
-                y[emulator_names.index(emulator_name)].append(0)
+                y[EMULATOR_NAMES.index(emulator_name)].append(0)
             if np.std(data) == 0:
-                std[emulator_names.index(emulator_name)].append(np.random.uniform(0.3, 0.5))
+                std[EMULATOR_NAMES.index(emulator_name)].append(np.random.uniform(0.3, 0.5))
             else:
-                std[emulator_names.index(emulator_name)].append(np.std(data))
+                std[EMULATOR_NAMES.index(emulator_name)].append(np.std(data))
 
     y_df = pd.DataFrame(y, columns=["Emulators", "Middle-end PC", "High-end PC"])
     device_names = ["Middle-end PC", "High-end PC"]
@@ -134,7 +134,7 @@ def draw_app_figure(app_name, fig_format="pdf"):
     plot.ylim(0, 80)
     plot.tight_layout()
     file_name = app_name + "." + fig_format
-    file_name = os.path.join(os.curdir, "Game/fig", file_name)
+    file_name = os.path.join(os.curdir, "Top5Games/fig", file_name)
     plot.savefig(file_name, dpi=500)
     plot.show()
 

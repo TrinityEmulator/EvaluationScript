@@ -1,6 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plot
 import os
+
+matplotlib.rc('font', family='arial') 
 
 BASE_PATH = "DataTransferBench"
 DATA_FOLDER = ["async_polling", "async_polling_aggregation", "sync_vm-exit",
@@ -77,33 +80,50 @@ def read_throughput(path):
 
 def draw_scatter_plot(fig_name, data, our_data, google_data, num_threads, compare_target, font_size=14,
                       save_type='png'):
-    plt.figure(figsize=(9, 7))
-    ax = plt.gca()
-    plt.xlabel("Data Chunk Size", fontsize=35)
-    plt.ylabel("Throughput (GB/s)", fontsize=35)
+    plot.figure(figsize=(8.5, 7))
 
-    plt.yticks(fontsize=font_size)
-    markers = ["s", "d"]
+    plot.rcParams['xtick.direction'] = 'in'
+    plot.rcParams['ytick.direction'] = 'in'
+
+    ax = plot.gca()
+
+    ax.spines['bottom'].set_linewidth(2)
+    ax.spines['left'].set_linewidth(2)
+    ax.spines['right'].set_linewidth(2)
+    ax.spines['top'].set_linewidth(2)
+
+    plot.rcParams['pdf.fonttype'] = 42
+    plot.rcParams['ps.fonttype'] = 42
+    plot.xlabel("Data Chunk Size", fontsize=30)
+    plot.ylabel("Throughput (GB/s)", fontsize=30)
+
+    plot.yticks(fontsize=22)
+    plot.tick_params(labelsize=20, width=2)
+    markers = ["o", "s"]
     for thread_id in num_threads:
-        plt.ylim(0, 22)
+        plot.yticks([0, 4, 8, 12, 16, 20, 24])
+        if fig_name == 'Teleporting_goldfish_12_threads':
+            plot.ylim(0, 20)
+        elif fig_name == 'Teleporting_goldfish_34_threads':
+            plot.ylim(0, 22)
+        elif fig_name == 'Teleporting_Exhaustion_12_threads':
+            plot.ylim(4, 18)
+        elif fig_name == 'Teleporting_Exhaustion_34_threads':
+            plot.ylim(8, 20)
         chunk_size = sorted(data[thread_id])
         x = np.array([str(int(i / 1024 / 1024)) + " MB" if int(i / 1024)
                                                            >= 1024 else str(int(i / 1024)) + " KB" for i in chunk_size])
         teleporting_x = sorted(our_data[thread_id])
         teleporting_y = np.array([our_data[thread_id][data_size][1]
                                   for data_size in teleporting_x])
-        plt.plot(x, teleporting_y, marker=markers[thread_id % 2], color=COLOR_LIST[thread_id],
+        plot.plot(x, teleporting_y, marker=markers[thread_id % 2], color='green',
                  label="Data Teleporting " + str(
                      thread_id + 1) + (" threads" if thread_id > 0 else " thread"), zorder=1, linewidth=2.5,
                  markersize=10)
 
         if compare_target == "Exhaustion":
             y = np.array([data[thread_id][data_size][1] for data_size in chunk_size])
-            if thread_id <= 1:
-                plt.ylim(4, 20)
-            else:
-                plt.ylim(8.5, 20)
-            plt.plot(x, y, marker=markers[thread_id % 2], color=COLOR_LIST[thread_id], linestyle='--',
+            plot.plot(x, y, marker=markers[thread_id % 2], color='b', linestyle='--',
                      label="Strategy Exhaustion " + str(
                          thread_id + 1) + (" threads" if thread_id > 0 else " thread"), zorder=1, linewidth=2.5,
                      markersize=10)
@@ -111,15 +131,20 @@ def draw_scatter_plot(fig_name, data, our_data, google_data, num_threads, compar
             google_x = sorted(google_data[thread_id])
             google_y = np.array([google_data[thread_id][data_size][1]
                                  for data_size in google_x])
-            plt.plot(x, google_y, marker=markers[thread_id % 2], linestyle='--', color=COLOR_LIST[thread_id],
+            plot.plot(x, google_y, marker=markers[thread_id % 2], linestyle='--', color=(128/255, 0/255, 128/255),
                      label="goldfish-pipe " + str(thread_id + 1) + (" threads" if thread_id > 0 else " thread"),
                      zorder=1, linewidth=2.5, markersize=10)
-        plt.xticks(x, fontsize=font_size, rotation=45)
+        plot.xticks(x, rotation=45, fontsize=22)
 
-    plt.tight_layout()
-    plt.legend(loc='upper left', fontsize=22)
-    plt.savefig(f"fig/{fig_name}.{save_type}", dpi=OUTPUT_DPI, bbox_inches='tight')
-    plt.show()
+    plot.tight_layout()
+    handles,labels = ax.get_legend_handles_labels()
+    handles = [handles[0], handles[2], handles[1], handles[3]]
+    labels = [labels[0], labels[2], labels[1], labels[3]]
+    legend = plot.legend(handles, labels, loc='upper left', fontsize=21, edgecolor=(0.5, 0.5, 0.5), borderpad=0, borderaxespad=1)
+    legend.get_frame().set_linewidth(1)
+    legend.get_frame().set_boxstyle('Square')
+    plot.savefig(f"fig/{fig_name}.{save_type}", dpi=OUTPUT_DPI, bbox_inches='tight')
+    plot.show()
 
 
 if __name__ == "__main__":

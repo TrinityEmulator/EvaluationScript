@@ -39,7 +39,7 @@ jobs:
         python DrawBreakdown.py
     - name: Draw CDF
       run: |
-        python DrawAPIDataCDFs.py
+        python DrawAPIData.py
     - name: Draw Transfer
       run: |
         python DrawTransferBench.py

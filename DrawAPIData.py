@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 matplotlib.rc('font', family='arial')
-os.chdir(os.path.join(os.path.dirname(os.path.realpath(__file__)),"ResourceCDF"))
+os.chdir(os.path.join(os.path.dirname(os.path.realpath(__file__)),"APIData"))
 
 def draw_api_distribution_CDF():
     plot_table = pd.read_csv(f"API_Call_Type_Distribution.csv", encoding='utf8')

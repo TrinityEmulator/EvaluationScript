@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 matplotlib.rc('font', family='arial')
-os.chdir(os.path.join(os.path.dirname(os.path.realpath(__file__)),"BreakDown"))
+os.chdir(os.path.join(os.path.dirname(os.path.realpath(__file__)),"Breakdown"))
 LINE_STYLES = ["-",":","--","-."]
 COLORS = ['b', 'k', (128/255, 0/255, 128/255), (0/255, 128/255, 128/255)]
 LABELS = ['Trinity', 'w/o Flow Control', 'w/o Projection Space', 'w/o Teleporting']

@@ -36,7 +36,7 @@ jobs:
         python Draw100Games.py
     - name: Draw Breakdown
       run: |
-        python DrawBreakdown.py
+        python DrawPerfBreakdown.py
     - name: Draw CDF
       run: |
         python DrawAPIData.py

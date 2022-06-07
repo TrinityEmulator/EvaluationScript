@@ -123,7 +123,7 @@ def draw_data_size_CDF():
     plot.show()
 
 def draw_gl_per_frame_CDF():
-    data = np.loadtxt('API_calls_per_frame.csv',delimiter = ",", encoding='utf8')
+    data = np.loadtxt('API_Calls_Per_Frame.csv',delimiter = ",", encoding='utf8')
     plot.rcParams['figure.subplot.top'] = 0.99
     plot.rcParams['figure.subplot.bottom'] = 0.20
     plot.rcParams['figure.subplot.left'] = 0.05

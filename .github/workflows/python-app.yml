@@ -30,7 +30,16 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Draw Benchmark
       run: |
-        python DrawBenchmarkFigure.py
-    - name: Draw App
+        python DrawBenchmark.py
+    - name: Draw 100App
       run: |
-        python DrawAppFigure.py
+        python Draw100Games.py
+    - name: Draw Breakdown
+      run: |
+        python DrawBreakdown.py
+    - name: Draw CDF
+      run: |
+        python DrawAPIDataCDFs.py
+    - name: Draw Transfer
+      run: |
+        python DrawTransferBench.py
